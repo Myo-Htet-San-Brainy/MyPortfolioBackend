@@ -15,6 +15,10 @@ const mongoSanitize = require("express-mongo-sanitize");
 const connectDB = require("./db/connectDb");
 const notFound = require("./middleware/notFound");
 const errorHandler = require("./middleware/errorHandler");
+const linksRouter = require("./routers/linksRouter");
+const worksRouter = require("./routers/worksRouter");
+const projectsRouter = require("./routers/projectsRouter");
+const metricsRouter = require("./routers/metricsRouter");
 
 //router imports
 
@@ -32,6 +36,11 @@ app.use(cookieParser(process.env.JWT_SECRET));
 app.get("/", async (req, res) => {
   res.send("hi mom");
 });
+
+app.use("/api/v1/links/", linksRouter);
+app.use("/api/v1/works/", worksRouter);
+app.use("/api/v1/projects/", projectsRouter);
+app.use("/api/v1/metrics/", metricsRouter);
 
 //lower order middleware
 app.use(notFound);
