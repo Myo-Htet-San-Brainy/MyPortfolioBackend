@@ -1,4 +1,5 @@
 const { StatusCodes } = require("http-status-codes");
+
 const errorHandler = (err, req, res, next) => {
   const customError = {
     message: err.message || "Something went wrong. Please try again later",
