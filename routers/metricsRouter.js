@@ -12,7 +12,7 @@ const {
 
 router.get("/", getMetrics);
 router.post("/", createMetric);
-router.put("/:id", updateMetric);
-router.delete("/:id", deleteMetric);
+router.put("/:name", updateMetric);
+router.delete("/:name", deleteMetric);
 
 module.exports = router;
