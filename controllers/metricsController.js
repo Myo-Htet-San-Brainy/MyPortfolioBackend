@@ -42,7 +42,7 @@ const deleteMetric = async (req, res) => {
   if (!metric) {
     throw new customError.NotFound(`No metric found with name: ${metricName}`);
   }
-  res.status(StatusCodes.OK).json({ success: true });
+  res.status(StatusCodes.OK).json({ success: true, data: metric });
 };
 
 module.exports = {

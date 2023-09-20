@@ -26,7 +26,13 @@ const metricsRouter = require("./routers/metricsRouter");
 app.use(morgan("tiny"));
 app.set("trust proxy", 1);
 app.use(helmet());
-app.use(cors());
+var corsOptions = {
+  origin: [
+    "https://myohtetsandev.netlify.app",
+    "https://myohtetsan.netlify.app",
+  ],
+};
+app.use(cors(corsOptions));
 app.use(xss());
 app.use(mongoSanitize());
 app.use(express.json());
