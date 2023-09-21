@@ -4,32 +4,21 @@ const { StatusCodes } = require("http-status-codes");
 //imports
 const Project = require("../models/projectsModel");
 const customError = require("../errors");
+const projectsService = require("../services/projectsService");
 
 const getProjects = async (req, res) => {
-  const projects = await Project.find({});
+  const projects = await projectsService.getProjects();
   res.status(StatusCodes.OK).json({ success: true, data: projects });
 };
 
 const createProject = async (req, res) => {
-  const project = await Project.create(req.body);
+  const project = await projectsService.createProject(req.body);
   res.status(StatusCodes.OK).json({ success: true, data: project });
 };
 
 const updateProject = async (req, res) => {
   const { id: projectId } = req.params;
-  const project = await Project.findOneAndUpdate(
-    {
-      _id: projectId,
-    },
-    req.body,
-    {
-      runValidators: true,
-      new: true,
-    }
-  );
-  if (!project) {
-    throw new customError.NotFound(`No work found with id: ${projectId}`);
-  }
+  const project = await projectsService.updateProject(projectId, req.body);
   res.status(StatusCodes.OK).json({
     success: true,
     data: project,
@@ -38,12 +27,7 @@ const updateProject = async (req, res) => {
 
 const deleteProject = async (req, res) => {
   const { id: projectId } = req.params;
-  const project = await Project.findOneAndDelete({
-    _id: projectId,
-  });
-  if (!project) {
-    throw new customError.NotFound(`No work found with id: ${projectId}`);
-  }
+  const project = await projectsService.deleteProject(projectId);
   res.status(StatusCodes.OK).json({
     success: true,
     data: project,
