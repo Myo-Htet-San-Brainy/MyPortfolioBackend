@@ -2,8 +2,6 @@
 const { StatusCodes } = require("http-status-codes");
 
 //imports
-const Metric = require("../models/metricsModel");
-const customError = require("../errors");
 const metricsService = require("../services/metricsService");
 
 const getMetrics = async (req, res) => {

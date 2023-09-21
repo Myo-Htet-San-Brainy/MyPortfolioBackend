@@ -40,7 +40,7 @@ app.use(cookieParser(process.env.JWT_SECRET));
 
 //routes
 app.get("/", async (req, res) => {
-  res.send("hi mom");
+  res.send("No doc for now:(");
 });
 
 app.use("/api/v1/links/", linksRouter);

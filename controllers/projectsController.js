@@ -2,8 +2,6 @@
 const { StatusCodes } = require("http-status-codes");
 
 //imports
-const Project = require("../models/projectsModel");
-const customError = require("../errors");
 const projectsService = require("../services/projectsService");
 
 const getProjects = async (req, res) => {
