@@ -2,7 +2,7 @@
 const { StatusCodes } = require("http-status-codes");
 
 //imports
-const linkService = require("../services/linkService");
+const linkService = require("../services/linksService");
 
 const getSocialLinks = async (req, res) => {
   const formattedLinks = await linkService.getSocialLinks();
