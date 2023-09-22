@@ -1,19 +1,17 @@
 //packages
 
 //imports
-const Link = require("../models/linksModel");
-const customError = require("../errors");
 
-async function getSocialLinks() {
+const makeGetSocialLinks = (Link) => async () => {
   const links = await Link.find();
   const formattedLinks = links.reduce((acc, link) => {
     acc[link.name] = link.link;
     return acc;
   }, {});
   return formattedLinks;
-}
+};
 
-async function getLink(linkName) {
+const makeGetLink = (Link, customError) => async (linkName) => {
   const link = await Link.findOne({
     name: linkName,
   });
@@ -21,9 +19,9 @@ async function getLink(linkName) {
     throw new customError.NotFound(`No link found with name: ${linkName}`);
   }
   return link;
-}
+};
 
-async function updateLink(linkName, data) {
+const makeUpdateLink = (Link) => async (linkName, data) => {
   const link = await Link.findOneAndUpdate(
     {
       name: linkName,
@@ -35,16 +33,31 @@ async function updateLink(linkName, data) {
     }
   );
   return link;
-}
+};
 
-async function createLink(data) {
+const makeCreateLink = (Link) => async (data) => {
   const link = await Link.create(data);
   return link;
+};
+
+function createLinksService() {
+  //imports
+  const Link = require("../models/linksModel");
+  const customError = require("../errors");
+  //
+  const getSocialLinks = makeGetSocialLinks(Link);
+  const getLink = makeGetLink(Link, customError);
+  const updateLink = makeUpdateLink(Link);
+  const createLink = makeCreateLink(Link);
+
+  return {
+    getSocialLinks,
+    getLink,
+    updateLink,
+    createLink,
+  };
 }
 
 module.exports = {
-  getSocialLinks,
-  getLink,
-  updateLink,
-  createLink,
+  createLinksService,
 };
