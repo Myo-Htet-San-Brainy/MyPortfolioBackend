@@ -8,8 +8,9 @@ const {
   createAdmin,
   changePassword,
 } = require("../controllers/adminController");
+const { authorize } = require("../middleware/authorization");
 
 router.post("/", createAdmin);
 router.post("/adminLogin", adminLogin);
-router.put("/changePassword", changePassword);
+router.put("/changePassword", authorize, changePassword);
 module.exports = router;
