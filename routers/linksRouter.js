@@ -10,11 +10,12 @@ const {
   createLink,
   deleteLink,
 } = require("../controllers/linksController");
+const { authorize } = require("../middleware/authorization");
 
 router.get("/getSocialLinks", getSocialLinks);
-router.post("/", createLink);
+router.post("/", authorize, createLink);
 router.get("/:name", getLink);
-router.put("/:name", updateLink);
-router.delete("/:name", deleteLink);
+router.put("/:name", authorize, updateLink);
+router.delete("/:name", authorize, deleteLink);
 
 module.exports = router;

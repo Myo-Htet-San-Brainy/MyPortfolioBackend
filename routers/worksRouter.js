@@ -9,10 +9,11 @@ const {
   deleteWork,
   createWork,
 } = require("../controllers/worksController");
+const { authorize } = require("../middleware/authorization");
 
 router.get("/", getWorks);
-router.post("/", createWork);
-router.put("/:id", updateWork);
-router.delete("/:id", deleteWork);
+router.post("/", authorize, createWork);
+router.put("/:id", authorize, updateWork);
+router.delete("/:id", authorize, deleteWork);
 
 module.exports = router;

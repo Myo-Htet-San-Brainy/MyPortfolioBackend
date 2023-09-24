@@ -9,10 +9,11 @@ const {
   deleteMetric,
   createMetric,
 } = require("../controllers/metricsController");
+const { authorize } = require("../middleware/authorization");
 
 router.get("/", getMetrics);
-router.post("/", createMetric);
-router.put("/:name", updateMetric);
-router.delete("/:name", deleteMetric);
+router.post("/", authorize, createMetric);
+router.put("/:name", authorize, updateMetric);
+router.delete("/:name", authorize, deleteMetric);
 
 module.exports = router;
