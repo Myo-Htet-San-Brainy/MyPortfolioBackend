@@ -4,6 +4,7 @@ const { StatusCodes } = require("http-status-codes");
 //imports
 const Admin = require("../models/adminModel");
 const customError = require("../errors");
+const { createJWT } = require("../utils/jwt");
 
 const adminLogin = async (req, res) => {
   //
@@ -15,14 +16,36 @@ const adminLogin = async (req, res) => {
     throw new customError.Unauthenticated("Incorrect Password");
   }
   //generate token
-  const token = "token";
+  const token = createJWT();
   //
-  res.StatusCodes(StatusCodes.OK).json({
+  res.status(StatusCodes.OK).json({
     success: true,
-    token,
+    data: token,
   });
+};
+
+const changePassword = async (req, res) => {
+  //
+  const { password } = req.body;
+  //
+  const admins = await Admin.find({});
+  admins[0].password = password;
+  admins[0].save();
+  //
+  res.status(StatusCodes.OK).json({
+    success: true,
+  });
+};
+
+//temp
+
+const createAdmin = async (req, res) => {
+  const admin = await Admin.create(req.body);
+  res.json(admin);
 };
 
 module.exports = {
   adminLogin,
+  createAdmin,
+  changePassword,
 };

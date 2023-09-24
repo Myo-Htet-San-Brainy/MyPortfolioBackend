@@ -48,7 +48,7 @@ app.use("/api/v1/links/", linksRouter);
 app.use("/api/v1/works/", worksRouter);
 app.use("/api/v1/projects/", projectsRouter);
 app.use("/api/v1/metrics/", metricsRouter);
-app.use("/api/v1/admin/", metricsRouter);
+app.use("/api/v1/admin/", adminRouter);
 
 //lower order middleware
 app.use(notFound);
