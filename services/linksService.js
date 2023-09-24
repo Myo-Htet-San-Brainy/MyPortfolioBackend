@@ -21,7 +21,7 @@ const makeGetLink = (Link, customError) => async (linkName) => {
   return link;
 };
 
-const makeUpdateLink = (Link) => async (linkName, data) => {
+const makeUpdateLink = (Link, customError) => async (linkName, data) => {
   const link = await Link.findOneAndUpdate(
     {
       name: linkName,
@@ -32,11 +32,24 @@ const makeUpdateLink = (Link) => async (linkName, data) => {
       new: true,
     }
   );
+  if (!link) {
+    throw new customError.NotFound(`No link found with name: ${linkName}`);
+  }
   return link;
 };
 
 const makeCreateLink = (Link) => async (data) => {
   const link = await Link.create(data);
+  return link;
+};
+
+const makeDeleteLink = (Link, customError) => async (linkName) => {
+  const link = await Link.findOneAndDelete({
+    name: linkName,
+  });
+  if (!link) {
+    throw new customError.NotFound(`No link found with name: ${linkName}`);
+  }
   return link;
 };
 
@@ -47,14 +60,16 @@ function createLinksService() {
   //
   const getSocialLinks = makeGetSocialLinks(Link);
   const getLink = makeGetLink(Link, customError);
-  const updateLink = makeUpdateLink(Link);
+  const updateLink = makeUpdateLink(Link, customError);
   const createLink = makeCreateLink(Link);
+  const deleteLink = makeDeleteLink(Link, customError);
 
   return {
     getSocialLinks,
     getLink,
     updateLink,
     createLink,
+    deleteLink,
   };
 }
 

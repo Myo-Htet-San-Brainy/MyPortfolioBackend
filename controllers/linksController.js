@@ -30,9 +30,16 @@ const createLink = async (req, res) => {
   res.status(StatusCodes.OK).json({ success: true, data: link });
 };
 
+const deleteLink = async (req, res) => {
+  const { name: linkName } = req.params;
+  await linkService.deleteLink(linkName);
+  res.status(StatusCodes.OK).json({ success: true });
+};
+
 module.exports = {
   getSocialLinks,
   getLink,
   updateLink,
   createLink,
+  deleteLink,
 };
