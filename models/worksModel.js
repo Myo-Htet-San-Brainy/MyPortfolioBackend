@@ -4,6 +4,8 @@ const worksSchema = new mongoose.Schema(
   {
     img: {
       type: String,
+      default:
+        "https://res.cloudinary.com/dhwwdk7uq/image/upload/v1690823157/21daysUserImages/file_bwxexw.jpg",
       required: [true, "Please provide img."],
     },
     name: {
