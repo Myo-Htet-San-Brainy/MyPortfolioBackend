@@ -31,6 +31,7 @@ var corsOptions = {
   origin: [
     "https://myohtetsandev.netlify.app",
     "https://myohtetsan.netlify.app",
+    "http://127.0.0.1:5500",
   ],
 };
 app.use(cors(corsOptions));
