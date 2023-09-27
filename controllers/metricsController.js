@@ -20,14 +20,14 @@ const createMetric = async (req, res) => {
 };
 
 const updateMetric = async (req, res) => {
-  const { name: metricName } = req.params;
-  const metric = await metricsService.updateMetric(metricName, req.body);
+  const { id: metricId } = req.params;
+  const metric = await metricsService.updateMetric(metricId, req.body);
   res.status(StatusCodes.OK).json({ success: true, data: metric });
 };
 
 const deleteMetric = async (req, res) => {
-  const { name: metricName } = req.params;
-  const metric = await metricsService.deleteMetric(metricName);
+  const { id: metricId } = req.params;
+  const metric = await metricsService.deleteMetric(metricId);
   res.status(StatusCodes.OK).json({ success: true, data: metric });
 };
 

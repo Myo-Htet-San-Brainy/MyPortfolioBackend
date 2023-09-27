@@ -16,8 +16,8 @@ const getAllLinks = async (req, res) => {
 };
 
 const getLink = async (req, res) => {
-  const { name: linkName } = req.params;
-  const link = await linkService.getLink(linkName);
+  const { id: linkId } = req.params;
+  const link = await linkService.getLink(linkId);
   res.status(StatusCodes.OK).json({
     success: true,
     data: link,
@@ -25,8 +25,8 @@ const getLink = async (req, res) => {
 };
 
 const updateLink = async (req, res) => {
-  const { name: linkName } = req.params;
-  const link = await linkService.updateLink(linkName, req.body);
+  const { id: linkId } = req.params;
+  const link = await linkService.updateLink(linkId, req.body);
   res.status(StatusCodes.OK).json({ success: true, data: link });
 };
 
@@ -36,8 +36,8 @@ const createLink = async (req, res) => {
 };
 
 const deleteLink = async (req, res) => {
-  const { name: linkName } = req.params;
-  await linkService.deleteLink(linkName);
+  const { id: linkId } = req.params;
+  await linkService.deleteLink(linkId);
   res.status(StatusCodes.OK).json({ success: true });
 };
 

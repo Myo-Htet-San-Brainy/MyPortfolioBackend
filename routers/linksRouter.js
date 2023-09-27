@@ -16,8 +16,8 @@ const { authorize } = require("../middleware/authorization");
 router.get("/getSocialLinks", getSocialLinks);
 router.get("/", getAllLinks);
 router.post("/", authorize, createLink);
-router.get("/:name", getLink);
-router.put("/:name", authorize, updateLink);
-router.delete("/:name", authorize, deleteLink);
+router.get("/:id", getLink);
+router.put("/:id", authorize, updateLink);
+router.delete("/:id", authorize, deleteLink);
 
 module.exports = router;

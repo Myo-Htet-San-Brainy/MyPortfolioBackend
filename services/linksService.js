@@ -16,20 +16,20 @@ const makeGetAllLinks = (Link) => async () => {
   return links;
 };
 
-const makeGetLink = (Link, customError) => async (linkName) => {
+const makeGetLink = (Link, customError) => async (linkId) => {
   const link = await Link.findOne({
-    name: linkName,
+    _id: linkId,
   });
   if (!link) {
-    throw new customError.NotFound(`No link found with name: ${linkName}`);
+    throw new customError.NotFound(`No link found with name: ${linkId}`);
   }
   return link;
 };
 
-const makeUpdateLink = (Link, customError) => async (linkName, data) => {
+const makeUpdateLink = (Link, customError) => async (linkId, data) => {
   const link = await Link.findOneAndUpdate(
     {
-      name: linkName,
+      _id: linkId,
     },
     data,
     {
@@ -38,7 +38,7 @@ const makeUpdateLink = (Link, customError) => async (linkName, data) => {
     }
   );
   if (!link) {
-    throw new customError.NotFound(`No link found with name: ${linkName}`);
+    throw new customError.NotFound(`No link found with name: ${linkId}`);
   }
   return link;
 };
@@ -48,12 +48,12 @@ const makeCreateLink = (Link) => async (data) => {
   return link;
 };
 
-const makeDeleteLink = (Link, customError) => async (linkName) => {
+const makeDeleteLink = (Link, customError) => async (linkId) => {
   const link = await Link.findOneAndDelete({
-    name: linkName,
+    _id: linkId,
   });
   if (!link) {
-    throw new customError.NotFound(`No link found with name: ${linkName}`);
+    throw new customError.NotFound(`No link found with name: ${linkId}`);
   }
   return link;
 };

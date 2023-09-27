@@ -23,10 +23,10 @@ async function createMetric(data) {
   return metric;
 }
 
-async function updateMetric(metricName, data) {
+async function updateMetric(metricId, data) {
   const metric = await Metric.findOneAndUpdate(
     {
-      name: metricName,
+      _id: metricId,
     },
     data,
     {
@@ -37,12 +37,12 @@ async function updateMetric(metricName, data) {
   return metric;
 }
 
-async function deleteMetric(metricName) {
+async function deleteMetric(metricId) {
   const metric = await Metric.findOneAndDelete({
-    name: metricName,
+    _id: metricId,
   });
   if (!metric) {
-    throw new customError.NotFound(`No metric found with name: ${metricName}`);
+    throw new customError.NotFound(`No metric found with name: ${metricId}`);
   }
   return metric;
 }

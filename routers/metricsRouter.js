@@ -15,7 +15,7 @@ const { authorize } = require("../middleware/authorization");
 router.get("/", getMetrics);
 router.get("/nonFormattedMetrics", getNonFormattedMetrics);
 router.post("/", authorize, createMetric);
-router.put("/:name", authorize, updateMetric);
-router.delete("/:name", authorize, deleteMetric);
+router.put("/:id", authorize, updateMetric);
+router.delete("/:id", authorize, deleteMetric);
 
 module.exports = router;
