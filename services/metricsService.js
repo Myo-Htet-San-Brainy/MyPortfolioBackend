@@ -13,6 +13,11 @@ async function getMetrics() {
   return formattedMetrics;
 }
 
+async function getNonFormattedMetrics() {
+  const metrics = await Metric.find({});
+  return metrics;
+}
+
 async function createMetric(data) {
   const metric = await Metric.create(data);
   return metric;
@@ -44,6 +49,7 @@ async function deleteMetric(metricName) {
 
 module.exports = {
   getMetrics,
+  getNonFormattedMetrics,
   createMetric,
   updateMetric,
   deleteMetric,
