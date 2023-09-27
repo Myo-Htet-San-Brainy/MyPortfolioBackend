@@ -10,6 +10,11 @@ const getSocialLinks = async (req, res) => {
   res.status(StatusCodes.OK).json({ success: true, data: formattedLinks });
 };
 
+const getAllLinks = async (req, res) => {
+  const links = await linkService.getAllLinks();
+  res.status(StatusCodes.OK).json({ success: true, data: links });
+};
+
 const getLink = async (req, res) => {
   const { name: linkName } = req.params;
   const link = await linkService.getLink(linkName);
@@ -38,6 +43,7 @@ const deleteLink = async (req, res) => {
 
 module.exports = {
   getSocialLinks,
+  getAllLinks,
   getLink,
   updateLink,
   createLink,

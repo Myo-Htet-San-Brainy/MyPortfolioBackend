@@ -11,6 +11,11 @@ const makeGetSocialLinks = (Link) => async () => {
   return formattedLinks;
 };
 
+const makeGetAllLinks = (Link) => async () => {
+  const links = await Link.find();
+  return links;
+};
+
 const makeGetLink = (Link, customError) => async (linkName) => {
   const link = await Link.findOne({
     name: linkName,
@@ -59,6 +64,7 @@ function createLinksService() {
   const customError = require("../errors");
   //
   const getSocialLinks = makeGetSocialLinks(Link);
+  const getAllLinks = makeGetAllLinks(Link);
   const getLink = makeGetLink(Link, customError);
   const updateLink = makeUpdateLink(Link, customError);
   const createLink = makeCreateLink(Link);
@@ -66,6 +72,7 @@ function createLinksService() {
 
   return {
     getSocialLinks,
+    getAllLinks,
     getLink,
     updateLink,
     createLink,

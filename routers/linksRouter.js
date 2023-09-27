@@ -5,6 +5,7 @@ const router = express.Router();
 //imports
 const {
   getSocialLinks,
+  getAllLinks,
   getLink,
   updateLink,
   createLink,
@@ -13,6 +14,7 @@ const {
 const { authorize } = require("../middleware/authorization");
 
 router.get("/getSocialLinks", getSocialLinks);
+router.get("/", getAllLinks);
 router.post("/", authorize, createLink);
 router.get("/:name", getLink);
 router.put("/:name", authorize, updateLink);
