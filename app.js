@@ -33,6 +33,7 @@ var corsOptions = {
     "https://myohtetsan.netlify.app",
     "https://myohtetsanadmin.netlify.app",
     "http://127.0.0.1:5500",
+    "http://localhost:5173",
   ],
 };
 app.use(cors(corsOptions));
