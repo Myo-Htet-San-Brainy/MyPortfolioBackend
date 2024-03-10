@@ -18,6 +18,7 @@ const errorHandler = require("./middleware/errorHandler");
 const linksRouter = require("./routers/linksRouter");
 const worksRouter = require("./routers/worksRouter");
 const projectsRouter = require("./routers/projectsRouter");
+const blogsRouter = require("./routers/blogsRouter");
 const metricsRouter = require("./routers/metricsRouter");
 const adminRouter = require("./routers/adminRouter");
 
@@ -50,6 +51,7 @@ app.get("/", async (req, res) => {
 app.use("/api/v1/links/", linksRouter);
 app.use("/api/v1/works/", worksRouter);
 app.use("/api/v1/projects/", projectsRouter);
+app.use("/api/v1/blogs/", blogsRouter);
 app.use("/api/v1/metrics/", metricsRouter);
 app.use("/api/v1/admin/", adminRouter);
 
