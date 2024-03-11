@@ -30,11 +30,11 @@ app.set("trust proxy", 1);
 app.use(helmet());
 var corsOptions = {
   origin: [
-    "https://myohtetsandev.netlify.app",
     "https://myohtetsan.netlify.app",
     "https://myohtetsanadmin.netlify.app",
     "http://127.0.0.1:5500",
     "http://localhost:5173",
+    "https://myohtetsanbrainy.netlify.app",
   ],
 };
 app.use(cors(corsOptions));
